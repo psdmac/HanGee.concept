@@ -61,6 +61,7 @@
           target.removeClass('shake shake-constant shake-slow');
           return $(document).on('touchend', function() {
             $('.swiper-slide .app-wrapper').removeClass('shake shake-constant shake-slow');
+            target = void 0;
             return $(document).off('touchend');
           });
         });
@@ -103,10 +104,11 @@
           if (target === void 0) {
 
           } else {
-            return target.css({
+            target.css({
               '-webkit-transform': 'none',
               'transition': '0.5s'
             });
+            return target = void 0;
           }
         });
       };
