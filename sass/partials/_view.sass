@@ -1,0 +1,51 @@
+.outer
+  display: block
+  width: 100%
+  height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  &.ng-enter, &.ng-leave
+    // +transition(0.5s linear all)
+    +transition-duration(0.5s)
+
+.rtl
+  .ng-enter
+    // margin-left: -100%
+    +translateX(100%)
+  .ng-enter-active
+    // margin-left: 0
+    +translateX(0)
+
+  .ng-leave
+    // margin-left: 0
+    +translateX(0)
+  .ng-leave-active
+    // margin-left: 100%
+    +translateX(-100%)
+
+.ltr
+  .ng-enter
+    // margin-left: -100%
+    +translateX(-100%)
+  .ng-enter-active
+    // margin-left: 0
+    +translateX(0)
+
+  .ng-leave
+    // margin-left: 0
+    +translateX(0)
+  .ng-leave-active
+    // margin-left: 100%
+    +translateX(100%)
+
+#container
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  &.phone
+    background: #ccc
+  &.contact
+    background: #333
