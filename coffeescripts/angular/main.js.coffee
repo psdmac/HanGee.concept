@@ -51,6 +51,7 @@ myApp.directive 'hammerSwipe', [ ->
       # 取消長按
       $(document).on 'touchend', ->
         $('.swiper-slide .app-wrapper').removeClass('shake shake-constant shake-slow')
+        target = undefined
         $(document).off 'touchend'
     hammer.on "tap", (event) ->
       # event.gesture.preventDefault()
@@ -87,4 +88,5 @@ myApp.directive 'hammerSwipe', [ ->
           '-webkit-transform': 'none'
           'transition': '0.5s'
         })
+        target = undefined
 ]
