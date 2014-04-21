@@ -42,64 +42,43 @@ myApp.controller('MainCtrl', ['$scope', function($scope) {}]);
 myApp.directive('hammerSwipe', [
   function() {
     return function(scope, el, attrs) {
-      var hammer, target;
+      var element, hammer, target;
 
       console.log($(window).width());
-      el = document.getElementById("swiper-container");
-      hammer = new Hammer(el);
+      element = document.getElementById("swiper-container");
+      hammer = new Hammer(element);
       target = void 0;
       hammer.on("hold", function(event) {
-        event.gesture.preventDefault();
         target = $(event.target).closest('.app-wrapper');
-        console.log(target);
-        console.log('pageX: ' + event.gesture.center.pageX);
-        console.log('pageY: ' + event.gesture.center.pageY);
+        console.log('hold');
         console.log('clientX: ' + event.gesture.center.clientX);
         console.log('clientY: ' + event.gesture.center.clientY);
         $('.swiper-slide .app-wrapper').addClass('shake shake-constant shake-slow');
         target.removeClass('shake shake-constant shake-slow');
-        return $(document).on('touchend', function() {
+        return $(window).on('touchend', function() {
           $('.swiper-slide .app-wrapper').removeClass('shake shake-constant shake-slow');
           target = void 0;
-          return $(document).off('touchend');
+          return $(window).off('touchend');
         });
-      });
-      hammer.on("tap", function(event) {
-        var deltaX;
-
-        deltaX = event.gesture.deltaX;
-        console.log('pageX: ' + event.gesture.center.pageX);
-        console.log('pageY: ' + event.gesture.center.pageY);
-        console.log('clientX: ' + event.gesture.center.clientX);
-        return console.log('clientY: ' + event.gesture.center.clientY);
       });
       hammer.on("drag", function(event) {
         var deltaX, deltaY;
 
-        event.gesture.preventDefault();
         deltaX = event.gesture.deltaX;
         deltaY = event.gesture.deltaY;
-        console.log(deltaX);
         if (target === void 0) {
 
         } else {
-          console.log(target);
+          console.log('deltaX: ' + deltaX);
+          console.log('deltaY: ' + deltaY);
           return target.css({
             '-webkit-transform': 'translate3d(' + deltaX + 'px,' + deltaY + 'px,0)'
           });
         }
       });
-      hammer.on("dragstart", function(event) {
-        event.gesture.preventDefault();
-        console.log(event);
-        console.log(event.type);
-        return console.log(event.gesture.deltaX);
-      });
       return hammer.on("dragend", function(event) {
         event.gesture.preventDefault();
-        console.log(event);
         console.log(event.type);
-        console.log(event.gesture.deltaX);
         if (target === void 0) {
 
         } else {

@@ -33,55 +33,43 @@ myApp.controller 'MainCtrl', ['$scope', ($scope) ->
 myApp.directive 'hammerSwipe', [ ->
   (scope, el, attrs) ->
     console.log $(window).width()
-    el = document.getElementById("swiper-container")
-    hammer = new Hammer(el)
+    element = document.getElementById("swiper-container")
+    hammer = new Hammer(element)
     target = undefined
     # 監聽長按
     hammer.on "hold", (event) ->
-      event.gesture.preventDefault()
+      # event.gesture.preventDefault()
       target = $(event.target).closest('.app-wrapper')
-      console.log target
-      console.log 'pageX: '+event.gesture.center.pageX
-      console.log 'pageY: '+event.gesture.center.pageY
+      console.log 'hold'
       console.log 'clientX: '+event.gesture.center.clientX
       console.log 'clientY: '+event.gesture.center.clientY
       # 加入 shake
       $('.swiper-slide .app-wrapper').addClass('shake shake-constant shake-slow')
       target.removeClass('shake shake-constant shake-slow')
       # 取消長按
-      $(document).on 'touchend', ->
+      $(window).on 'touchend', ->
         $('.swiper-slide .app-wrapper').removeClass('shake shake-constant shake-slow')
         target = undefined
-        $(document).off 'touchend'
-    hammer.on "tap", (event) ->
+        $(window).off 'touchend'
+      
+    hammer.on "drag", (event) ->
       # event.gesture.preventDefault()
       deltaX = event.gesture.deltaX
-      console.log 'pageX: '+event.gesture.center.pageX
-      console.log 'pageY: '+event.gesture.center.pageY
-      console.log 'clientX: '+event.gesture.center.clientX
-      console.log 'clientY: '+event.gesture.center.clientY
-    hammer.on "drag", (event) ->
-      event.gesture.preventDefault()
-      deltaX = event.gesture.deltaX
       deltaY = event.gesture.deltaY
-      console.log deltaX
       if target is undefined
       else
-        console.log target
+        # console.log target
+        console.log 'deltaX: '+deltaX
+        console.log 'deltaY: '+deltaY
         target.css({
           '-webkit-transform': 'translate3d('+deltaX+'px,'+deltaY+'px,0)' 
         })
-    hammer.on "dragstart", (event) ->
-      event.gesture.preventDefault()
-      console.log event
-      console.log event.type
-      console.log event.gesture.deltaX
 
     hammer.on "dragend", (event) ->
       event.gesture.preventDefault()
-      console.log event
+      # console.log event
       console.log event.type
-      console.log event.gesture.deltaX
+      # console.log event.gesture.deltaX
       if target is undefined
       else
         target.css({
