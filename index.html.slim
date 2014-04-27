@@ -8,87 +8,96 @@ html.no-js lang="zh_tw" ng-app="myApp"
   link href="stylesheets/icon_style.css" rel="stylesheet"
   link href="stylesheets/idangerous.swiper.css" rel="stylesheet"
   link href="stylesheets/idangerous.swiper.3dflow.css" rel="stylesheet"
+  link href="stylesheets/jquery-ui-1.10.4.custom" rel="stylesheet"
   link href="stylesheets/csshake.min.css" rel="stylesheet"
   link href="css/core.min.css" rel="stylesheet"
   link href="stylesheets/style.css" rel="stylesheet"
   link href="/favicon.ico" rel="shortcut icon"
   script src="javascripts/modernizr-2.0.6.min.js"
+    / script src="javascripts/jquery-1.10.2.min.js"
+  script src="javascripts/jquery-1.10.2.js"
+  / script src="javascripts/vendor/jquery-ui.min.js"
+  script src="javascripts/jquery-ui-1.10.4.custom.js"
 
   body ng-controller="LauncherCtrl" hammer-swipe=""
     #swiper-container
       .swiper-wrapper
-        .swiper-slide.red-slide 
-          .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)"
+        .swiper-slide.red-slide my-sortable=""
+          .app-wrapper ng-cloak="" ng-repeat="app in apps" data-index="{{app.id}}"
             .square style="background: {{app.theme}}"
-              button.icon-wrapper
+              .icon-wrapper
                 i ng-class="app.icon"
             .name
               | {{app.app}}
-        .swiper-slide.blue-slide 
-          .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)"
+        .swiper-slide.blue-slide my-sortable=""
+          .app-wrapper ng-cloak="" ng-repeat="app in apps" data-index="{{app.id}}"
             .square style="background: {{app.theme}}"
-              button.icon-wrapper
+              .icon-wrapper
                 i ng-class="app.icon"
             .name
               | {{app.app}}
-        .swiper-slide.orange-slide 
-          .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)"
+        .swiper-slide.orange-slide my-sortable=""
+          .app-wrapper ng-cloak="" ng-repeat="app in apps" data-index="{{app.id}}"
             .square style="background: {{app.theme}}"
-              button.icon-wrapper
+              .icon-wrapper
                 i ng-class="app.icon"
             .name
               | {{app.app}}
-        .swiper-slide.green-slide 
-          .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)"
+        .swiper-slide.green-slide my-sortable=""
+          .app-wrapper ng-cloak="" ng-repeat="app in apps" data-index="{{app.id}}"
             .square style="background: {{app.theme}}"
-              button.icon-wrapper
+              .icon-wrapper
                 i ng-class="app.icon"
             .name
               | {{app.app}}
-        .swiper-slide.pink-slide 
-          .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)"
-            .square style="background: {{app.theme}}"
-              button.icon-wrapper
-                i ng-class="app.icon"
-            .name
-              | {{app.app}}
-        .swiper-slide.red-slide 
-          .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)"
-            .square style="background: {{app.theme}}"
-              button.icon-wrapper
-                i ng-class="app.icon"
-            .name
-              | {{app.app}}
-        .swiper-slide.blue-slide 
-          .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)"
-            .square style="background: {{app.theme}}"
-              button.icon-wrapper
-                i ng-class="app.icon"
-            .name
-              | {{app.app}}
-        .swiper-slide.orange-slide 
-          .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)"
-            .square style="background: {{app.theme}}"
-              button.icon-wrapper
-                i ng-class="app.icon"
-            .name
-              | {{app.app}}
+        / .swiper-slide.pink-slide 
+        /   .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)" data-index="{{app.id}}" get-position=""
+        /     .square style="background: {{app.theme}}"
+        /       button.icon-wrapper
+        /         i ng-class="app.icon"
+        /     .name
+        /       | {{app.app}}
+        / .swiper-slide.red-slide 
+        /   .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)" data-index="{{app.id}}" get-position=""
+        /     .square style="background: {{app.theme}}"
+        /       button.icon-wrapper
+        /         i ng-class="app.icon"
+        /     .name
+        /       | {{app.app}}
+        / .swiper-slide.blue-slide 
+        /   .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)" data-index="{{app.id}}" get-position=""
+        /     .square style="background: {{app.theme}}"
+        /       button.icon-wrapper
+        /         i ng-class="app.icon"
+        /     .name
+        /       | {{app.app}}
+        / .swiper-slide.orange-slide 
+        /   .app-wrapper ng-cloak="" ng-repeat="app in apps" ng-click="startActivity(app.id, app.package, app.activity, app.module)" data-index="{{app.id}}" get-position=""
+        /     .square style="background: {{app.theme}}"
+        /       button.icon-wrapper
+        /         i ng-class="app.icon"
+        /     .name
+        /       | {{app.app}}
+        pre
+          | {{apps | json}}
       .pagination
 
 
+
+
       #fixed-apps
-        .app-wrapper ng-cloak="" ng-repeat="app in fixedApps" ng-click="startActivity(app.id, app.package, app.activity, app.module)"
+        .app-wrapper ng-cloak="" ng-repeat="app in fixedApps" ng-click="startActivity(app.id, app.package, app.activity, app.module)" data-index="{{app.id}}" get-position=""
           .square style="background: {{app.theme}}"
             button.icon-wrapper
               i ng-class="app.icon"
           .name
             | {{app.app}}
 
-  script src="javascripts/jquery-1.10.2.min.js"
+
   script src="javascripts/vendor/idangerous.swiper.js"
   script src="javascripts/vendor/idangerous.swiper.3dflow.js"
   script src="javascripts/vendor/hammer.js"
-  script src="js/core.min.js"
+  / script src="js/core.min.js"
   script src="javascripts/vendor/angular.js"
   script src="javascripts/vendor/angular-animate.js"
   script src="javascripts/vendor/angular-cookies.js"
@@ -101,6 +110,7 @@ html.no-js lang="zh_tw" ng-app="myApp"
   script src="javascripts/vendor/angular-touch.js"
   script src="javascripts/vendor/angulartics.min.js"
   script src="javascripts/vendor/angulartics-google-analytics.min.js"
+  script src="javascripts/vendor/angular-dragdrop.js"
   script src="javascripts/angular/app.js"
   script src="javascripts/angular/main.js"
   script src="javascripts/angular/factory.js"

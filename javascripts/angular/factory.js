@@ -49,7 +49,7 @@ myApp.factory('AppFactory', [
       apps: function() {
         return [
           {
-            id: "104",
+            id: "1",
             "package": "",
             app: "Facebook",
             activity: "",

@@ -38,3 +38,4 @@ myApp = angular.module 'myApp',['ngSanitize','ngAnimate','angulartics','angulart
 #       $rootScope.direction = 'ltr'
 #       oldIdx = toState.index
 # ]
+

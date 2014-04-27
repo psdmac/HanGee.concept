@@ -43,7 +43,7 @@ myApp.factory 'AppFactory',[ ->
     }]
   apps: ->
     [{
-      id: "104"
+      id: "1"
       package: ""
       app: "Facebook"
       activity: ""
